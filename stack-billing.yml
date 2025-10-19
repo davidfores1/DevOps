@@ -43,7 +43,16 @@ services:
 #Billin app frontend service
   billingapp-front:
     build:
-      context: ./angular 
+      context: ./angular
+    deploy:   
+        resources:
+           limits: 
+              cpus: "0.15"
+              memory: 250M
+#recusos dedicados, mantiene los recursos disponibles del host para el contenedor
+           reservations:
+              cpus: "0.1"
+              memory: 128M   
     container_name: billingApp-front
     depends_on:     
       - billingapp-back
